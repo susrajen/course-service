@@ -14,7 +14,7 @@ spec:
         app.kubernetes.io/name: app-2048-sush
     spec:
       containers:
-      - image: public.ecr.aws/l6m2t8p7/docker-2048:latest
+      - image: 991524241826.dkr.ecr.ap-south-2.amazonaws.com/sush-course-repo:latest
         imagePullPolicy: Always
         name: app-2048-sush
         ports:
