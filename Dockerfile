@@ -29,9 +29,4 @@ HEALTHCHECK --interval=15s --timeout=3s --start-period=10s --retries=3 \
     "import urllib.request; urllib.request.urlopen('http://localhost:3001/health')" \
     || exit 1
  
-CMD ["gunicorn",
-     "--bind",        "0.0.0.0:3001",
-     "--workers",     "2",
-     "--timeout",     "30",
-     "--access-logfile", "-",
-     "app:app"]
+CMD ["gunicorn", "--bind",        "0.0.0.0:3001", "--workers",     "2", "--timeout",     "30", "--access-logfile", "-", "app:app"]
