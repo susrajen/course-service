@@ -12,8 +12,7 @@ phases:
       - aws ecr get-login-password --region $AWS_REGION |
           docker login --username AWS --password-stdin
             991524241826.dkr.ecr.$AWS_REGION.amazonaws.com
-      - export IMAGE_TAG=${CODEBUILD_RESOLVED_SOURCE
-         _VERSION:0:7}
+      - export IMAGE_TAG=${CODEBUILD_RESOLVED_SOURCE_VERSION:0:7}
   build:
     commands:
       - cd day2-microservices/student-service
