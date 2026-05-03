@@ -22,7 +22,7 @@ spec:
 
         env:
         - name: AWS_REGION
-          value: "dev"
+          value: "ap-south-2"
         - name: COURSE_SERVICE_URL
           value: ""
 ---
