@@ -6,8 +6,20 @@ from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
 
 from flask import request
 from botocore.exceptions import ClientError
- 
+
+from flask import Flask
+from flask_cors import CORS
+
 app = Flask(__name__)
+
+CORS(app, resources={
+    r"/*": {
+        "origins": "*",   # for testing only
+        "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization"]
+    }
+})
+ 
  
 xray_recorder.configure(service="course-service")
 XRayMiddleware(app, xray_recorder)
@@ -31,14 +43,18 @@ def get_course(course_code):
         return jsonify({"error": "Course not found"}), 404
     return jsonify(item), 200
  
- 
 @app.route("/courses", methods=["GET"])
+def list_courses():
+    resp = courses_table.scan(Limit=50)
+    return jsonify(resp.get("Items", [])), 200
+ 
+@app.route("/sush-course/courses", methods=["GET"])
 def list_courses():
     resp = courses_table.scan(Limit=50)
     return jsonify(resp.get("Items", [])), 200
 
 
-@app.route("/courses", methods=["POST"])
+@app.route("/sush-course/courses", methods=["POST"])
 def add_course():
     try:
         data = request.get_json()
