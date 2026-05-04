@@ -52,7 +52,7 @@ metadata:
 
     alb.ingress.kubernetes.io/group.name: students-app
 
-    alb.ingress.kubernetes.io/healthcheck-path: /health
+    alb.ingress.kubernetes.io/healthcheck-path: /sush-course/health
 
 spec:
   ingressClassName: alb
