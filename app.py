@@ -44,7 +44,7 @@ def get_course(course_code):
     return jsonify(item), 200
  
 @app.route("/courses", methods=["GET"])
-def list_courses():
+def list_courses_base():
     resp = courses_table.scan(Limit=50)
     return jsonify(resp.get("Items", [])), 200
  
