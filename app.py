@@ -30,7 +30,7 @@ dynamodb      = boto3.resource("dynamodb", region_name=REGION)
 courses_table = dynamodb.Table("Courses")
  
  
-@app.route("/health")
+@app.route("/sush-course/health")
 def health():
     return jsonify({"status": "ok", "service": "course-service"}), 200
  
